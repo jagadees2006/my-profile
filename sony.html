@@ -1,0 +1,217 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sony HT-S20R 3D Animation</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+  color: white;
+  background: radial-gradient(circle, #283747, #05080d);
+}
+
+.scene {
+  width: 340px;
+  height: 300px;
+  perspective: 900px;
+}
+
+.system {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  animation: rotate 30s linear infinite;
+}
+
+@keyframes rotate {
+  from { transform: rotateY(0deg); }
+  to   { transform: rotateY(360deg); }
+}
+
+.speaker {
+  position: absolute;
+  width: 65px;
+  height: 115px;
+  border-radius: 8px;
+  border: 2px solid #444;
+  background: linear-gradient(90deg, #080808, #292929, #080808);
+  box-shadow: 0 15px 25px #0009;
+  transform-style: preserve-3d;
+}
+
+.speaker::before {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border-radius: 5px;
+  background: repeating-linear-gradient(
+    0deg, #171717 0px, #303030 2px, #111 4px
+  );
+  border: 1px solid #555;
+}
+
+.speaker::after {
+  content: "SONY";
+  position: absolute;
+  bottom: 12px;
+  width: 100%;
+  text-align: center;
+  font-size: 8px;
+}
+
+.left {
+  left: 5px;
+  top: 105px;
+  transform: translateZ(70px);
+}
+
+.right {
+  right: 5px;
+  top: 105px;
+  transform: translateZ(70px);
+}
+
+.rear-left {
+  left: 50px;
+  top: 40px;
+  transform: translateZ(-70px) rotateY(180deg);
+}
+
+.rear-right {
+  right: 50px;
+  top: 40px;
+  transform: translateZ(-70px) rotateY(180deg);
+}
+
+.soundbar {
+  position: absolute;
+  width: 190px;
+  height: 48px;
+  left: 75px;
+  top: 190px;
+  border-radius: 8px;
+  border: 2px solid #444;
+  background: linear-gradient(#333, #080808);
+  box-shadow: 0 12px 20px #0009;
+  transform: translateZ(95px);
+  text-align: center;
+  line-height: 44px;
+  font-size: 10px;
+}
+
+.subwoofer {
+  position: absolute;
+  width: 80px;
+  height: 130px;
+  left: 130px;
+  top: 35px;
+  border-radius: 7px;
+  border: 2px solid #444;
+  background: linear-gradient(90deg, #080808, #292929, #080808);
+  transform: translateZ(-120px) rotateY(180deg);
+  box-shadow: 0 15px 25px #0009;
+}
+
+.subwoofer::before {
+  content: "";
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  left: 14px;
+  bottom: 15px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #050505 40%, #444 44%, #111 65%);
+  border: 3px solid #555;
+}
+
+h1 {
+  position: fixed;
+  top: 20px;
+  font-size: 27px;
+  letter-spacing: 3px;
+}
+
+p {
+  position: fixed;
+  top: 65px;
+  color: #aaa;
+  font-size: 13px;
+}
+
+.info {
+  position: fixed;
+  bottom: 35px;
+  text-align: center;
+  line-height: 2;
+  color: #80d5ff;
+  font-size: 13px;
+}
+
+button {
+  position: fixed;
+  bottom: 105px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  background: #168bce;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<h1>SONY HT-S20R</h1>
+<p>5.1 Channel Home Theatre System</p>
+
+<div class="scene">
+  <div class="system" id="system">
+
+    <div class="speaker left"></div>
+    <div class="speaker right"></div>
+
+    <div class="speaker rear-left"></div>
+    <div class="speaker rear-right"></div>
+
+    <div class="soundbar">SONY</div>
+    <div class="subwoofer"></div>
+
+  </div>
+</div>
+
+<button onclick="toggleRotation()">Pause / Play</button>
+
+<div class="info">
+  5.1 Surround Sound · Dolby Audio<br>
+  HDMI ARC · Bluetooth · Powerful Bass
+</div>
+
+<script>
+const system = document.getElementById("system");
+let playing = true;
+
+function toggleRotation() {
+  playing = !playing;
+  system.style.animationPlayState =
+    playing ? "running" : "paused";
+}
+</script>
+
+</body>
+</html>
